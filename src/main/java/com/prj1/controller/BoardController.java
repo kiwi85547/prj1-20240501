@@ -50,4 +50,27 @@ public class BoardController {
         // jsp로 포워드
         return "board/home";
     }
+
+    @PostMapping("/delete")
+    public String delete(Integer id) {
+        service.remove(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/modify")
+    public String modify(Integer id, Model model) {
+        // 조회해서
+        // 모델에 넣고 //이미 있어서 재사용
+        model.addAttribute("board", service.get(id));
+        // view로 포워드
+        return "board/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modifyPost(Board board, RedirectAttributes rttr) {
+        service.modify(board);
+        System.out.println("board = " + board);
+        rttr.addAttribute("id", board.getId());
+        return "redirect:/board";
+    }
 }
