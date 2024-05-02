@@ -32,3 +32,9 @@ drop table member;
 
 ALTER TABLE member
     ADD COLUMN inserted DATETIME NOT NULL DEFAULT NOW();
+
+UPDATE member
+SET email='sdf',
+    password='ff',
+    nick_name='dss'
+WHERE id = 9;

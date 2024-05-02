@@ -35,6 +35,7 @@
                 <div>
                     <%--                    button.btn.btn-danger[form]{삭제}--%>
                     <button class="btn btn-danger" form="formDelete">삭제</button>
+                    <button class="btn btn-secondary" form="formUpdate">수정</button>
                 </div>
             </div>
         </div>
@@ -44,6 +45,11 @@
 <%--form의 id를 위쪽 button의 form에 넣기--%>
 <div class="d-none" onsubmit="return confirm('탈퇴하시겠습니까?')">
     <form action="/member/remove" id="formDelete" method="post">
+        <input type="hidden" name="id" value="${member.id}">
+    </form>
+</div>
+<div class="d-none">
+    <form action="/member/update" id="formUpdate" method="get">
         <input type="hidden" name="id" value="${member.id}">
     </form>
 </div>
