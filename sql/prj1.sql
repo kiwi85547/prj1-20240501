@@ -14,3 +14,17 @@ CREATE TABLE board
 SELECT *
 FROM board;
 DESC board;
+
+# 회원 테이블
+CREATE TABLE member
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    email     VARCHAR(200) NOT NULL UNIQUE,
+    password  VARCHAR(200) NOT NULL,
+    nick_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+select *
+from member;
+desc member;
+drop table member;

@@ -9,39 +9,35 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
+<c:import url="/WEB-INF/fragment/navbar.jsp"/>
+<%--div.container>div.row.justify-content-center>div.col-6--%>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
-
-            <h3 class="mb-4">새 게시물 작성</h3>
-            <form action="/add" method="post">
+            <h3 class="mb-3">회원 가입</h3>
+            <form action="/member/signup" method="post">
+                <%--                email,password,nick_name 받기--%>
+                <%--                div*3>label.form-label+input.form-control--%>
                 <div class="mb-3">
-                    <label for="inputTitle" class="form-label">
-                        제목
-                    </label>
-                    <input class="form-control" id="inputTitle" type="text" name="title" required>
+                    <label for="inputEmail" class="form-label">이메일</label>
+                    <input name="email" id="inputEmail" required type="email" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="textareaContent" class="form-label">
-                        본문
-                    </label>
-                    <textarea class="form-control" name="content" id="textareaContent" cols="30" rows="10"
-                              required></textarea>
+                    <label for="inputPassword" class="form-label">패스워드</label>
+                    <input name="password" id="inputPassword" required type="password" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="inputWriter" class="form-label">
-                        작성자
-                    </label>
-                    <input class="form-control" id="inputWriter" type="text" name="writer" required>
+                    <label for="inputNickName" class="form-label">별명</label>
+                    <input name="nickName" id="inputNickName" required type="text" class="form-control">
                 </div>
                 <div>
-                    <button class="btn btn-primary">저장</button>
+                    <button class="btn btn-primary">가입</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
