@@ -15,12 +15,17 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <h3 class="mb-3">회원 가입</h3>
-            <form action="/member/signup" method="post" onsubmit="return checkValues">
+            <form action="/member/signup" method="post" onsubmit="return checkValues()">
                 <%--                email,password,nick_name 받기--%>
                 <%--                div*3>label.form-label+input.form-control--%>
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">이메일</label>
-                    <input name="email" id="inputEmail" required type="email" class="form-control">
+                    <div class="input-group">
+                        <input name="email" id="inputEmail" required type="email" class="form-control">
+                        <button onclick="emailCheck();" type="button" id="buttonEmailCheck"
+                                class="btn btn-outline-secondary">중복 확인
+                        </button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">패스워드</label>
@@ -47,6 +52,19 @@
 </div>
 
 <script>
+    <%--    비동기적인 방식을 동기적으로 처리할 때(await) async를 함수 앞에 붙여준다.--%>
+
+    async function emailCheck() {
+        const emailValue = document.querySelector("#inputEmail").value;
+        const url = "/member/email?email=" + emailValue;
+
+        // ajax 요청
+        const response = await fetch(encodeURI(url));
+        // 응답 처리
+        // console.log(response.text());
+        alert(await response.text());
+    }
+
     function passwordCheck() {
         const password = document.querySelector("#inputPassword").value;
         const passwordCheck = document.querySelector("#inputPasswordCheck").value;
@@ -72,6 +90,9 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
