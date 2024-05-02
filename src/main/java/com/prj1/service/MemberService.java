@@ -15,4 +15,8 @@ public class MemberService {
     public void signup(Member member) {
         mapper.insert(member);
     }
+
+    public void view() {
+        mapper.select();
+    }
 }

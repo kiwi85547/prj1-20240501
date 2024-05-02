@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -28,5 +29,12 @@ public class memberController {
         return null;
     }
 
+    @GetMapping("view")
+    public String viewForm(Model model, RedirectAttributes rttr) {
+        // 특정 회원정보 내용만 보이는 게시판
+        service.view();
+        rttr.addAttribute("id",);
+        return "member/view";
+    }
 
 }

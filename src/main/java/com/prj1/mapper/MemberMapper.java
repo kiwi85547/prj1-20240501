@@ -3,6 +3,8 @@ package com.prj1.mapper;
 import com.prj1.domain.Member;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MemberMapper {
@@ -13,5 +15,11 @@ public interface MemberMapper {
             INSERT INTO member (email,password,nick_name)
             VALUES (#{email},#{password},#{nickName})
             """)
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Member member);
+
+    @Select("""
+            SELECT * FROM member
+            """)
+    void select();
 }
