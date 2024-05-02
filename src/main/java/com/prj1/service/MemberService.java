@@ -21,4 +21,13 @@ public class MemberService {
     public List<Member> list() {
         return mapper.selectAll();
     }
+
+    public Member get(Integer id) {
+        return mapper.selectById(id);
+    }
+
+    //    여기에서는 remove를 받아서 하는 일이 없으므로 void와 Integer의 차이가 없음
+    public Integer remove(Integer id) {
+        return mapper.deleteById(id);
+    }
 }

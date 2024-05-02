@@ -35,5 +35,16 @@ public class memberController {
         return "member/list";
     }
 
+    @GetMapping("")
+    public String info(Integer id, Model model) {
+        model.addAttribute("member", service.get(id));
+        return "member/info";
+    }
+
+    @PostMapping("remove")
+    public String remove(Integer id) {
+        service.remove(id);
+        return "redirect:/member/signup";
+    }
 
 }
