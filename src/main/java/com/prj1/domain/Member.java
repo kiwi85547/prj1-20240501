@@ -2,12 +2,18 @@ package com.prj1.domain;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class Member {
-    //    id는 안만듬. 나는 만드는줄 알고 미리 썼다가 주석처리 함
-//    private Integer id;
+    private Integer id;
     private String email;
     private String password;
     private String nickName;
+    private LocalDateTime inserted;
 
+//    # snake_case -> camelCase 로 맵핑
+//    mybatis.configuration.map-underscore-to-camel-case=true
+//    nick_name -> nickName으로 변환시켜줌
+//    이게 없으면 nick_name에 맵핑이 안됨
 }
