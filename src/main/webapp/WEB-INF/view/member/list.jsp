@@ -28,15 +28,15 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${memberList}" var="member">
-                    <c:url var="memberLink" value="/member">
-                        <c:param name="id" value="${member.id}"/>
-                    </c:url>
+                    <%--                    <c:url var="memberLink" value="/member">--%>
+                    <%--                        <c:param name="id" value="${member.id}"/>--%>
+                    <%--                    </c:url>--%>
                     <tr>
                         <td>${member.id}</td>
                         <td>
-                            <a href="${memberLink}">
-                                ${member.email}</td>
-                        </a>
+                            <a href="/member?id=${member.id}">${member.email}</a>
+                                <%--                            <a href="${memberLink}">${member.email}</a>--%>
+                        </td>
                         <td>${member.password}</td>
                         <td>${member.nickName}</td>
                         <td>${member.inserted}</td>

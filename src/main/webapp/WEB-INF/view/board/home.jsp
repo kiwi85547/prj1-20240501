@@ -41,6 +41,128 @@
         </div>
     </div>
 </div>
+<%--<div class="container">--%>
+<%--    <div class="row justify-content-center">--%>
+<%--        <div class="col-6">--%>
+<%--            &lt;%&ndash;            맨 처음(1) 페이지로 가기&ndash;%&gt;--%>
+<%--            <c:if test="${pageInfo.currentPageNumber > 1}">--%>
+<%--                <c:url value="/" var="firstPageLink">--%>
+<%--                    <c:param name="page" value="1"/>--%>
+<%--                </c:url>--%>
+<%--                <a href="${firstPageLink}">맨 앞</a>--%>
+<%--                |--%>
+<%--            </c:if>--%>
+
+<%--            &lt;%&ndash;                이전 페이지 링크&ndash;%&gt;--%>
+<%--            <c:if test="${pageInfo.prevPageNumber > 0}">--%>
+<%--                <c:url value="/" var="prevPageLink">--%>
+<%--                    <c:param name="page" value="${pageInfo.prevPageNumber}"/>--%>
+<%--                </c:url>--%>
+<%--                <a href="${prevPageLink}">이전</a>--%>
+<%--                |--%>
+<%--            </c:if>--%>
+
+<%--            &lt;%&ndash;            페이지 번호 링크들&ndash;%&gt;--%>
+<%--            <c:forEach begin="${pageInfo.beginPageNumber}" end="${pageInfo.endPageNumber}" var="pageNumber">--%>
+<%--                <c:url var="pageLink" value="/">--%>
+<%--                    <c:param name="page" value="${pageNumber}"></c:param>--%>
+<%--                </c:url>--%>
+<%--                <a href="${pageLink}">${pageNumber}</a>--%>
+<%--                |--%>
+<%--            </c:forEach>--%>
+
+<%--            &lt;%&ndash;                다음 페이지 링크&ndash;%&gt;--%>
+<%--            <c:if test="${pageInfo.nextPageNumber < pageInfo.lastPageNumber}">--%>
+<%--                <c:url value="/" var="nextPageLink">--%>
+<%--                    <c:param name="page" value="${pageInfo.nextPageNumber}"/>--%>
+<%--                </c:url>--%>
+<%--                <a href="${nextPageLink}">다음</a>--%>
+<%--                |--%>
+<%--            </c:if>--%>
+
+<%--            &lt;%&ndash;                맨 뒤(마지막) 페이지 이동 링크&ndash;%&gt;--%>
+<%--            <c:if test="${pageInfo.currentPageNumber < pageInfo.lastPageNumber}">--%>
+<%--                <c:url value="/" var="lastPageLink">--%>
+<%--                    <c:param name="page" value="${pageInfo.lastPageNumber}"/>--%>
+<%--                </c:url>--%>
+<%--                <a href="${lastPageLink}">맨 뒤</a>--%>
+<%--                |--%>
+<%--            </c:if>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-1">
+
+                    <%--                    맨 앞--%>
+                    <c:if test="${pageInfo.currentPageNumber > 1}">
+                        <c:url value="/" var="firstPageLink">
+                            <c:param name="page" value="1"/>
+                        </c:url>
+                        <li class="page-item">
+                            <a class="page-link" href="${firstPageLink}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <%--                이전 페이지 링크--%>
+                    <c:if test="${pageInfo.prevPageNumber > 0}">
+                        <c:url value="/" var="prevPageLink">
+                            <c:param name="page" value="${pageInfo.prevPageNumber}"/>
+                        </c:url>
+                        <li class="page-item">
+                            <a class="page-link" href="${prevPageLink}">&lt;</a>
+                        </li>
+                    </c:if>
+
+
+                    <%--            페이지 번호 링크들--%>
+                    <c:forEach begin="${pageInfo.beginPageNumber}" end="${pageInfo.endPageNumber}" var="pageNumber">
+                        <c:url var="pageLink" value="/">
+                            <c:param name="page" value="${pageNumber}"></c:param>
+                        </c:url>
+
+                        <li class="page-item ${pageInfo.currentPageNumber eq pageNumber? 'active' : ''}">
+                            <a class="page-link" href="${pageLink}">${pageNumber}</a>
+                        </li>
+
+                    </c:forEach>
+
+
+                    <%--                다음 페이지 링크--%>
+                    <c:if test="${pageInfo.nextPageNumber < pageInfo.lastPageNumber}">
+                        <c:url value="/" var="nextPageLink">
+                            <c:param name="page" value="${pageInfo.nextPageNumber}"/>
+                        </c:url>
+                        <li class="page-item">
+                            <a class="page-link" href="${nextPageLink}">&gt;</a>
+                        </li>
+                    </c:if>
+
+
+                    <%--                        맨 뒤--%>
+                    <c:if test="${pageInfo.currentPageNumber < pageInfo.lastPageNumber}">
+                        <c:url value="/" var="lastPageLink">
+                            <c:param name="page" value="${pageInfo.lastPageNumber}"/>
+                        </c:url>
+                        <li class="page-item">
+                            <a class="page-link" href="${lastPageLink}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
