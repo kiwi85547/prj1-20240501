@@ -3,6 +3,7 @@ package com.prj1.controller;
 import com.prj1.domain.Member;
 import com.prj1.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,15 +34,22 @@ public class memberController {
     }
 
     @GetMapping("list")
+    @PreAuthorize("hasAuthority('admin')")
     public String list(Model model) {
         model.addAttribute("memberList", service.list());
         return "member/list";
     }
 
     @GetMapping("")
-    public String info(Integer id, Model model) {
-        model.addAttribute("member", service.get(id));
-        return "member/info";
+    public String info(Integer id, Authentication authentication, Model model) {
+        // url을 입력하고 들어왔을 때
+        // 1. 로그인 한 사람만 자신의 회원 정보 볼 수 있게
+        // 2. 관리자는 모든 회원 정보를 볼 수 있게
+        if (service.hasAccess(id, authentication) || service.isAdmin(authentication)) {
+            model.addAttribute("member", service.get(id));
+            return "member/info";
+        }
+        return "redirect:/";
     }
 
     @PostMapping("remove")

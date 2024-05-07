@@ -58,3 +58,22 @@ WHERE id > 0;
 
 SELECT *
 FROM board;
+
+SELECT *
+FROM member;
+desc member;
+
+CREATE TABLE authority
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    member_id INT         NOT NULL REFERENCES member (id),
+# name은 권한 이름
+    name      VARCHAR(20) NOT NULL
+);
+
+INSERT INTO authority (member_id, name)
+VALUES (28, 'admin');
+
+SELECT *
+FROM member m
+         LEFT JOIN authority a ON m.id = a.member_id

@@ -23,12 +23,24 @@
                     </li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
+                    <sec:authorize access="hasAuthority('admin')">
+                        <li class="nav-item">
+                            <a href="/member/list" class="nav-link">
+                                회원목록
+                            </a>
+                        </li>
+                    </sec:authorize>
+                </sec:authorize>
+
+                <sec:authorize access="isAuthenticated()">
+
+                    <%--                    principal.member 는 어디있나요?--%>
+                    <sec:authentication property="principal.member" var="authMember"></sec:authentication>
                     <li class="nav-item">
-                        <a href="/member/list" class="nav-link">
-                            회원목록
-                        </a>
+                        <a href="/member?id=${authMember.id}" class="nav-link">내정보</a>
                     </li>
                 </sec:authorize>
+
                 <sec:authorize access="not isAuthenticated()">
                     <li class="nav-item">
                         <a href="/member/signup" class="nav-link">
