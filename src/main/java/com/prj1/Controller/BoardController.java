@@ -3,6 +3,7 @@ package com.prj1.Controller;
 import com.prj1.domain.Board;
 import com.prj1.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -17,14 +18,19 @@ public class BoardController {
 
     private final BoardService service;
 
+    @GetMapping("")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("add")
     public String add() {
         return "add";
     }
 
     @PostMapping("add")
-    public String addPost(Board board, RedirectAttributes rttr) {
-        service.addBoard(board);
+    public String addPost(Board board, Authentication authentication, RedirectAttributes rttr) {
+        service.addBoard(board, authentication);
         rttr.addAttribute("id", board.getId());
         return "redirect:/board";
     }
@@ -51,16 +57,16 @@ public class BoardController {
     }
 
     @PostMapping("/board/update")
-    public String updatePost(Board board, RedirectAttributes rttr) {
-        service.updateBoard(board);
+    public String updatePost(Board board, Authentication authentication, RedirectAttributes rttr) {
+        service.updateBoard(board, authentication);
         rttr.addAttribute("id", board.getId());
         return "redirect:/board";
     }
 
     // redirectAttributes를 썼는데 잘 넘어갔음.. 뭐지?
     @PostMapping("/board/delete")
-    public String delete(Board board) {
-        service.delete(board);
+    public String delete(Board board, Authentication authentication) {
+        service.delete(board, authentication);
         return "redirect:/boardList";
     }
 }

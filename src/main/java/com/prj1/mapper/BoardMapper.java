@@ -11,20 +11,20 @@ public interface BoardMapper {
     // insert into board (sql 컬럼)
     // set (#{자바빈 컬럼})
     @Insert("""
-            INSERT INTO board (title,content,writer,member_id)
-            VALUES (#{title},#{content},#{writer},#{memberId})
+            INSERT INTO board (title,content,member_id)
+            VALUES (#{title},#{content},#{memberId})
             """)
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Board board);
 
 
     @Select("""
-            SELECT id,title,content,writer,inserted FROM board WHERE id=#{id}
+            SELECT b.id,b.title,b.content,b.inserted,m.writer FROM board b JOIN member m ON b.member_id = m.id WHERE b.id=#{id}
             """)
     Board selectById(Integer id);
 
     @Select("""
-            SELECT id,title,writer FROM board
+            SELECT b.id,b.title,m.writer FROM board b JOIN member m ON b.member_id = m.id
             """)
     List<Board> selectAll();
 
@@ -37,4 +37,9 @@ public interface BoardMapper {
             DELETE FROM board WHERE id=#{id}
             """)
     void delete(Board board);
+
+    @Delete("""
+            DELETE FROM board WHERE member_id=#{id}
+            """)
+    void deleteByMemberId(Integer id);
 }

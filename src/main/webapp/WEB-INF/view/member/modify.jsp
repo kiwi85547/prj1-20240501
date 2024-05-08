@@ -13,31 +13,31 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <h3 class="mb-4">${board.id}번 게시물 수정</h3>
-            <form action="/board/update" method="post">
-                <input type="hidden" name="id" value="${board.id}">
-                <div class="mb-3">
-                    <label for="inputTitle" class="form-label">
-                        제목
-                    </label>
-                    <input id="inputTitle" class="form-control" type="text" name="title" value="${board.title}"
-                           required>
+            <form action="/member/modify" method="post">
+                <div class="mb-4">
+                    이메일
+                    <input type="email" value="${member.email}" readonly>
                 </div>
-                <div class="mb-3">
-                    <label for="textareaContent" class="form-label">
-                        내용
-                    </label>
-                    <textarea class="form-control" id="textareaContent" cols="30" rows="10" name="content"
-                              required>${board.content}</textarea>
+                <div class="mb-4">
+                    <label for="inputPassword" class="form-label">패스워드</label>
+                    <input name="password" id="inputPassword" type="password" class="form-control" required>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-secondary">제출</button>
+                <div class="mb-4">
+                    <label for="writer" class="form-label">사용자 이름</label>
+                    <input name="writer" id="writer" type="text" class="form-control" required>
+                </div>
+                <div>
+                    <input type="hidden" name="id" value="${member.id}">
+                </div>
+                <div>
+                    <button class="btn btn-primary">수정 완료</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

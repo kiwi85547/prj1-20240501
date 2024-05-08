@@ -46,3 +46,35 @@ VALUES ('choi', '66@66', '66');
 
 ALTER TABLE member
     MODIFY id INT AUTO_INCREMENT;
+
+DROP index member_id ON board;
+
+desc board;
+
+# board 테이블의 unique 제약사항 없애기 : 1. 외래키 제약조건 제거 2. 인텍스 제거
+ALTER TABLE board
+    MODIFY COLUMN member_id INT NOT NULL;
+
+SHOW INDEX FROM board;
+
+DROP INDEX member_id_2 ON board;
+
+SHOW CREATE TABLE board;
+
+ALTER TABLE board
+    DROP FOREIGN KEY fk_board_member;
+
+ALTER TABLE board
+    ADD FOREIGN KEY (member_id) REFERENCES member (id);
+
+ALTER TABLE board
+    DROP COLUMN writer;
+
+SELECT b.id, b.title, b.content, b.inserted, m.writer
+FROM board b
+         JOIN member m ON b.member_id = m.id
+WHERE b.id = 23;
+
+SELECT b.id, b.title, m.writer
+FROM board b
+         JOIN member m ON b.member_id = m.id;

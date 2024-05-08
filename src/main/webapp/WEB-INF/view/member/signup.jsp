@@ -13,7 +13,7 @@
 <%--div.container>div.row.justify-content-center>div.col-6--%>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-8">
             <h3 class="mb-4">회원가입</h3>
             <form action="/member/signup" method="post">
                 <%-- div*3>label.form-label+input.form-control--%>
@@ -32,6 +32,7 @@
                 <div class="mb-4">
                     <button class="btn btn-primary">가입</button>
                 </div>
+
             </form>
         </div>
     </div>

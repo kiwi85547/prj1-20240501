@@ -10,29 +10,36 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
-<h3>게시물 작성</h3>
 <form action="/add" method="post">
-    <div>
-        제목
-        <input type="text" name="title" required>
-    </div>
-    <div>
-        내용
-        <textarea name="content" id="" cols="30" rows="10" required></textarea>
-    </div>
-    <div>
-        글쓴이
-        <input type="text" name="writer" required>
-    </div>
-    <div>
-        아이디(숫자)
-        <input type="number" name="memberId" required>
-    </div>
-    <div>
-        <button>저장</button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h3 class="mb-4">게시물 작성</h3>
+                <div class="mb-3">
+                    <label for="inputTitle" class="form-label">제목</label>
+                    <input name="title" id="inputTitle" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="textareaContent" class="form-label">본문</label>
+                    <textarea name="content" id="textareaContent" class="form-control" cols="30" rows="10"
+                              required></textarea>
+                </div>
+
+                <%--                <div class="mb-2">--%>
+                <%--                    <label for="inputWriter" class="form-label">작성자</label>--%>
+                <%--                    <input name="writer" id="inputWriter" type="text" class="form-control" required>--%>
+                <%--                </div>--%>
+                <%--                <div class="mb-2">--%>
+                <%--                    <label for="inputMemberId" class="form-label">멤버아이디</label>--%>
+                <%--                    <input name="memberId" id="inputMemberId" type="number" class="form-control" required>--%>
+                <%--                </div>--%>
+                <div class="mb-3">
+                    <button class="btn btn-primary">저장</button>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="

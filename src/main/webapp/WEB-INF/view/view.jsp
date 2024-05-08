@@ -10,29 +10,46 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
-<h3>${board.id}번 게시물</h3>
-<div>제목
-    <input type="text" value="${board.title}" readonly>
-</div>
-<div>내용
-    <textarea id="" cols="30" rows="10" readonly>${board.content}</textarea>
-</div>
-<div>작성자
-    <input type="text" value="${board.writer}" readonly>
-</div>
-<div>작성 일시
-    <input type="datetime-local" value="${board.inserted}" readonly>
-</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h3 class="mb-4">${board.id} 번 게시물</h3>
+            <div class="mb-3">
+                <label for="inputTitle" class="form-label">
+                    제목
+                </label>
+                <input id="inputTitle" class="form-control" type="text" value="${board.title}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="textareaContent" class="form-label">
+                    본문
+                </label>
+                <textarea id="textareaContent" class="form-control" cols="30" rows="10"
+                          readonly>${board.content}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="inputWriter" class="form-label">
+                    작성자
+                </label>
+                <input id="inputWriter" class="form-control" type="text" readonly value="${board.writer}">
+            </div>
+            <div class="mb-3">
+                <label for="inputInserted" class="form-label">
+                    작성일시
+                </label>
+                <input id="inputInserted" class="form-control" type="datetime-local" readonly value="${board.inserted}">
+            </div>
 
-<div>
-    <a href="/board/update?id=${board.id}">수정</a>
+            <div>
+                <a href="/board/update?id=${board.id}" class="btn btn-secondary">수정</a>
+                <button form="formDelete" class="btn btn-danger">삭제</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <form action="/board/delete" method="post" onsubmit="return confirm('삭제 하시겠습니까?')">
-        <input type="hidden" name="id" value="${board.id}">
-        <button>삭제</button>
-    </form>
-</div>
+<form id="formDelete" action="/board/delete" method="post" onsubmit="return confirm('삭제 하시겠습니까?')">
+    <input type="hidden" name="id" value="${board.id}">
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
