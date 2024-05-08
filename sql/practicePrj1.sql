@@ -35,6 +35,14 @@ ALTER TABLE board
     MODIFY member_id INT NOT NULL UNIQUE;
 
 desc member;
+SELECT *
+FROM member;
 
 ALTER TABLE board
     ADD CONSTRAINT fk_board_member FOREIGN KEY (member_id) REFERENCES member (id);
+
+INSERT INTO member (writer, email, password)
+VALUES ('choi', '66@66', '66');
+
+ALTER TABLE member
+    MODIFY id INT AUTO_INCREMENT;
