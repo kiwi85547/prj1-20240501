@@ -21,11 +21,17 @@ public class MemberService {
 
     private final MemberMapper mapper;
     private final BoardMapper boardMapper;
+    // 암호화 해주는 객체
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     public void signup(Member member) {
-        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        // 사용자가 입력한 패스워드를 암호화해서 다시 바꿔준다..
+        String password = member.getPassword();
+        String encodedPassword = bCryptPasswordEncoder.encode(password);
+        member.setPassword(encodedPassword);
+        // 위 세 줄을 한 줄로
+//        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
         mapper.insert(member);
     }
 

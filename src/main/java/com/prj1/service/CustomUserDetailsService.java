@@ -15,6 +15,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // (member)여야 하므로 DB에서 조회하기
+        // return new CustomerUser(member)
         return new CustomerUser(mapper.selectByEmail(username));
     }
 }

@@ -32,14 +32,19 @@ CREATE TABLE member
 );
 
 ALTER TABLE board
-    MODIFY member_id INT NOT NULL UNIQUE;
-
-desc member;
+    MODIFY member_id INT NOT NULL;
 SELECT *
 FROM member;
 
 ALTER TABLE board
-    ADD CONSTRAINT fk_board_member FOREIGN KEY (member_id) REFERENCES member (id);
+    DROP INDEX member_id;
+
+
+desc member;
+
+INSERT INTO board
+SELECT *
+FROM board;
 
 INSERT INTO member (writer, email, password)
 VALUES ('choi', '66@66', '66');
